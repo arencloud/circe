@@ -17,30 +17,24 @@ func NewIngressCommand() *IngressGenerateCommand {
 	c := &IngressGenerateCommand{
 		command: &cobra.Command{
 			Use:   "ingress",
-			Short: "generates network policies based on inputs from csv",
+			Short: "generates network policies based on inputs from CSV or XLSX",
 		},
 	}
-	c.command.Flags().StringVarP(&c.input, "input", "i", "", "csv file")
+	c.command.Flags().StringVarP(&c.input, "input", "i", "", "input file (CSV or XLSX)")
 	c.command.Flags().StringVarP(&c.output, "output", "o", ".", "output directory to save egress policies, default is current directory")
-	c.command.Flags().IntVarP(&c.headerStart, "header", "", 0, "header starting index in csv, which will indicate which row to consider as header, default is 0")
+	c.command.Flags().IntVarP(&c.headerStart, "header", "", 0, "header starting index in the input (CSV/XLSX), indicating which row to treat as header; default is 0")
 	c.command.Run = c.Run
 	return c
 }
 
 func (c *IngressGenerateCommand) Run(command *cobra.Command, args []string) {
 	var unmarshalled []unmarshalcsv.UnmarshalledData
-	unmarshal, err := unmarshalcsv.NewUnmarshalCsv(c.input, c.headerStart)
-	if err != nil {
-		panic(err)
-	}
-	err = unmarshal.UnmarshalCsv(&unmarshalled)
-	if err != nil {
+	if err := unmarshalcsv.Unmarshal(&unmarshalled, c.input, c.headerStart); err != nil {
 		panic(err)
 	}
 	// Use generic policies filtered to Ingress only
 	n := netpol.NewGenericPoliciesForDirection(unmarshalled, c.output, "Ingress")
-	err = n.RenderGeneric()
-	if err != nil {
+	if err := n.RenderGeneric(); err != nil {
 		panic(err)
 	}
 }
