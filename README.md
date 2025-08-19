@@ -17,7 +17,6 @@ It supports:
 - CLI Usage
   - network-policy egress
   - network-policy ingress
-  - generate (sample data)
 - Input Schema (CSV/XLSX)
 - Examples
 - Troubleshooting / FAQ
@@ -89,7 +88,7 @@ Example:
 - bin/circe network-policy egress -i ./policies.csv -o ./out
 
 Notes:
-- Currently the CLI path uses CSV input. XLSX is supported by the library APIs.
+- Currently, the CLI path uses CSV input. XLSX is supported by the library APIs.
 
 ### network-policy ingress
 Generates Ingress NetworkPolicy YAML from a CSV file.
@@ -102,17 +101,6 @@ Flags:
 Example:
 - bin/circe network-policy ingress -i ./policies.csv -o ./out
 
-### generate (sample data)
-Creates sample CSV and/or XLSX files with canonical headers and example rows.
-
-Flags:
--     --csv string          Path to write a sample CSV file
--     --xlsx string         Path to write a sample XLSX file
-
-Examples:
-- bin/circe generate --csv ./sample.csv
-- bin/circe generate --xlsx ./sample.xlsx
-- bin/circe generate --csv ./sample.csv --xlsx ./sample.xlsx
 
 
 ## Input Schema (CSV/XLSX)
