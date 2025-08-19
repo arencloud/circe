@@ -54,6 +54,7 @@ jobs:
           name: circe-binaries-${{ matrix.goos }}-${{ matrix.goarch }}
           path: dist/*
           if-no-files-found: error
+          overwrite: true
 
   release:
     name: Create GitHub Release
