@@ -73,4 +73,4 @@ jobs:
           files: dist-download/**
           generate_release_notes: true
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.ARENCLOUD_TOKEN }}
