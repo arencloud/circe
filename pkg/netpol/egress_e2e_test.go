@@ -46,6 +46,7 @@ func TestEgressGeneratorEndToEnd(t *testing.T) {
         "kind: NetworkPolicy",
         "name: frontend-to-backend",
         "namespace: ns-a",
+        "app: frontend",
         "policyTypes:",
         "- Egress",
         "egress:",

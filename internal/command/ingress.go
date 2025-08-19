@@ -6,17 +6,17 @@ import (
 	"github.com/spf13/cobra"
 )
 
-type EgressGenerateCommand struct {
+type IngressGenerateCommand struct {
 	command     *cobra.Command
 	input       string
 	output      string
 	headerStart int
 }
 
-func NewEgressCommand() *EgressGenerateCommand {
-	c := &EgressGenerateCommand{
+func NewIngressCommand() *IngressGenerateCommand {
+	c := &IngressGenerateCommand{
 		command: &cobra.Command{
-			Use:   "egress",
+			Use:   "ingress",
 			Short: "generates network policies based on inputs from csv",
 		},
 	}
@@ -27,7 +27,7 @@ func NewEgressCommand() *EgressGenerateCommand {
 	return c
 }
 
-func (c *EgressGenerateCommand) Run(command *cobra.Command, args []string) {
+func (c *IngressGenerateCommand) Run(command *cobra.Command, args []string) {
 	var unmarshalled []unmarshalcsv.UnmarshalledData
 	unmarshal, err := unmarshalcsv.NewUnmarshalCsv(c.input, c.headerStart)
 	if err != nil {
@@ -37,8 +37,9 @@ func (c *EgressGenerateCommand) Run(command *cobra.Command, args []string) {
 	if err != nil {
 		panic(err)
 	}
-	n := netpol.NewNetworkPolicy(unmarshalled, c.output)
-	err = n.EgressPolicy()
+	// Use generic policies filtered to Ingress only
+	n := netpol.NewGenericPoliciesForDirection(unmarshalled, c.output, "Ingress")
+	err = n.RenderGeneric()
 	if err != nil {
 		panic(err)
 	}

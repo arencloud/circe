@@ -44,6 +44,7 @@ func TestIngressGeneratorEndToEnd(t *testing.T) {
         "kind: NetworkPolicy",
         "name: allow-ingress-https",
         "namespace: ns-b",
+        "app: backend",
         "policyTypes:",
         "- Ingress",
         "ingress:",

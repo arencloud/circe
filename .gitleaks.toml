@@ -10,13 +10,13 @@ paths = [
   "^pkg/unmarshalcsv/testdata/",
   "^pkg/netpol/.*_test.go$",
   "^internal/command/.*_test.go$",
-  "^out/",
+  "^out/"
 ]
 
 # Common false positives
 regexes = [
   # RFC 5737 example IP ranges (like in test data)
-  "(?:^|[^0-9])(10\.0\.\d+\.\d+|192\.0\.2\.\d+|198\.51\.100\.\d+|203\.0\.113\.\d+)(?:$|[^0-9])",
+  '(?:^|[^0-9])(10\.0\.\d+\.\d+|192\.0\.2\.\d+|198\.51\.100\.\d+|203\.0\.113\.\d+)(?:$|[^0-9])',
   # Generic placeholders
-  "(?i)(example|sample|dummy|placeholder)",
+  '(?i)(example|sample|dummy|placeholder)'
 ]

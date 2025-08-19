@@ -11,7 +11,8 @@ type RootCommand struct {
 }
 
 // These variables can be overridden at build time using -ldflags, e.g.:
-//   go build -ldflags "-X 'circe/internal/command.Version=v0.2.0' -X 'circe/internal/command.Commit=abcdef1' -X 'circe/internal/command.Date=2025-08-19'" ./cmd/main
+//
+//	go build -ldflags "-X 'circe/internal/command.Version=v0.2.0' -X 'circe/internal/command.Commit=abcdef1' -X 'circe/internal/command.Date=2025-08-19'" ./cmd/main
 var (
 	Version = "dev"
 	Commit  = "none"
