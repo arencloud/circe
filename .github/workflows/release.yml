@@ -51,7 +51,7 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: circe-binaries-${{ matrix.goos }}-${{ matrix.goarch }}
+          name: circe-binaries-${{ matrix.goos }}-${{ matrix.goarch }}-attempt${{ github.run_attempt }}
           path: dist/*
           if-no-files-found: error
           overwrite: true
