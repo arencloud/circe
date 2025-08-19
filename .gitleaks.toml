@@ -1,0 +1,22 @@
+title = "gitleaks config"
+
+[extend]
+# Start from the latest built-in rules
+useDefault = true
+
+[allowlist]
+# Files and paths that are safe and may contain example values
+paths = [
+  "^pkg/unmarshalcsv/testdata/",
+  "^pkg/netpol/.*_test.go$",
+  "^internal/command/.*_test.go$",
+  "^out/",
+]
+
+# Common false positives
+regexes = [
+  # RFC 5737 example IP ranges (like in test data)
+  "(?:^|[^0-9])(10\.0\.\d+\.\d+|192\.0\.2\.\d+|198\.51\.100\.\d+|203\.0\.113\.\d+)(?:$|[^0-9])",
+  # Generic placeholders
+  "(?i)(example|sample|dummy|placeholder)",
+]
