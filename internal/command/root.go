@@ -14,7 +14,7 @@ type RootCommand struct {
 //
 //	go build -ldflags "-X 'circe/internal/command.Version=v0.2.0' -X 'circe/internal/command.Commit=abcdef1' -X 'circe/internal/command.Date=2025-08-19'" ./cmd/main
 var (
-	Version = "dev"
+	Version = "v1"
 	Commit  = "none"
 	Date    = "unknown"
 )
